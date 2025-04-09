@@ -174,28 +174,70 @@ np.reciprocal(df["Moderate Positive Skew"])
 ```
 np.sqrt(df["Highly Positive Skew"])
 ```
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/4172dad3-0df7-4f5a-b74c-f68d60e15161)
 
 ```
 np.square(df["Highly Positive Skew"])
 ```
+![image](https://github.com/user-attachments/assets/f07a1f66-90d6-49e5-8637-00b5878a33ce)
 
 ```
+df["Highly Positive Skew_boxcox"], parameters=stats.boxcox(df["Highly Positive Skew"])
+df
+```
+![image](https://github.com/user-attachments/assets/822d90b0-bf58-48d4-b618-8dc827df92e7)
 
 ```
+df.skew()
+```
+![image](https://github.com/user-attachments/assets/77f542f1-b956-4f91-bcf0-6ca0bed85e99)
 
 ```
+df["Highly Negative Skew_yeojohnson"],parameters=stats.yeojohnson(df["Highly Negative Skew"])
+df.skew()
+```
+![image](https://github.com/user-attachments/assets/fe0bacd3-33e3-4542-a2b8-c0baf9747f54)
 
 ```
+import seaborn as sns
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/cc1c1a2b-2453-4007-a259-731b08581af0)
 
 ```
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew"]),line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/002189f2-9439-4cb7-ada0-447632a32431)
 
 ```
+from sklearn.preprocessing import QuantileTransformer
+qt=QuantileTransformer(output_distribution='normal',n_quantiles=891)
+
+df["Moderate Negative Skew"]=qt.fit_transform(df[["Moderate Negative Skew"]])
+
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/d3b77c6e-6464-4141-85a9-7b3f55e1cf88)
 
 ```
+df["Highly Negative Skew_1"]=qt.fit_transform(df[["Highly Negative Skew"]])
+sm.qqplot(df["Highly Negative Skew"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/c4c00eb8-7ff7-49b5-81d4-d084e46bf895)
 
 ```
+sm.qqplot(df["Highly Negative Skew_1"],line='45')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/af032fa5-84bf-44c1-b3e3-f74bdc22fd63)
+
+
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
-
+Thus the given data, Feature Encoding, Transformation process and save the data to a file was performed successfully.
        
